@@ -2,8 +2,9 @@
 
 RM      = rm -f
 CC      = gcc
-BINS    = libjansson.a
-CFLAGS  = -std=c99 -Isrc -Wall -Wpedantic -Wno-unused-function -Werror
+LIB_A   = libjansson.a
+LIB_SO  = libjansson.so
+CFLAGS  = -std=c99 -Isrc -Wall -Wpedantic -Wno-unused-function -Werror -fPIC
 CFLAGS += -Wextra -Wno-unused-parameter -Wno-sign-compare
 CFLAGS += -DHAVE_STDINT_H
 
@@ -22,15 +23,18 @@ SRCS = \
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(BINS)
+all: $(LIB_A) $(LIB_SO)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $< -c -o $@ $(CFLAGS)
 
-$(BINS): $(OBJS)
+$(LIB_A): $(OBJS)
 	echo $(OBJS)
 	ar rcu $@ $(OBJS) 
 	ranlib $@
+
+$(LIB_SO): $(OBJS)
+	$(CC) -o $@ -shared $?
 
 clean:
 	$(foreach c, $(BINS), $(RM) $(c);)

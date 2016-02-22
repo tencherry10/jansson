@@ -1,0 +1,16 @@
+{
+  "name": "jansson",
+  "version": "2.7.0",
+  "repo": "tencherry10/jansson",
+  "description": "jansson packaged for clib",
+  "keywords": ["JSON"],
+  "license": "MIT",
+  "prepare": "make",
+  "prepared_src": [
+    "libjansson.so",
+    "libjansson.a"  
+  ],
+  "src": [
+    "src/jansson.h"
+  ]
+}
