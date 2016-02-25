@@ -11,6 +11,7 @@
     "libjansson.a"  
   ],
   "src": [
+    "src/jansson_config.h",
     "src/jansson.h"
   ]
 }
