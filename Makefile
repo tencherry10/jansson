@@ -4,7 +4,7 @@ RM      = rm -f
 CC      = gcc
 LIB_A   = libjansson.a
 LIB_SO  = libjansson.so
-CFLAGS  = -std=c99 -Isrc -Wall -Wpedantic -Wno-unused-function -Werror -fPIC
+CFLAGS  = -std=c99 -Isrc -Wall -Wno-unused-function -Werror -fPIC
 CFLAGS += -Wextra -Wno-unused-parameter -Wno-sign-compare
 CFLAGS += -DHAVE_STDINT_H
 
