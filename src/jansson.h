@@ -291,6 +291,19 @@ typedef void (*json_free_t)(void *);
 void json_set_alloc_funcs(json_malloc_t malloc_fn, json_free_t free_fn);
 void json_get_alloc_funcs(json_malloc_t *malloc_fn, json_free_t *free_fn);
 
+#if defined(__clang__) || defined(__GNUC__)
+
+#define auto_json __attribute__((cleanup(auto_cleanup_json))) json_t *
+
+static inline void auto_cleanup_json(json_t **s) { 
+  if(s && *s) {
+    json_decref(*s);
+    *s = NULL;
+  }
+}
+
+#endif
+
 #ifdef __cplusplus
 }
 #endif
